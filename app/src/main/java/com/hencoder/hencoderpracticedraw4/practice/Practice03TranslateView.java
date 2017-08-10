@@ -4,8 +4,10 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -38,7 +40,14 @@ public class Practice03TranslateView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        canvas.save();
+        canvas.translate(-100, -100);
         canvas.drawBitmap(bitmap, point1.x, point1.y, paint);
+        canvas.restore();
+
+        canvas.save();
+        canvas.translate(200, 100);
         canvas.drawBitmap(bitmap, point2.x, point2.y, paint);
+        canvas.restore();
     }
 }

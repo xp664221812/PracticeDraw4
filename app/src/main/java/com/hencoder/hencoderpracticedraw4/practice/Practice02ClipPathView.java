@@ -11,11 +11,12 @@ import android.graphics.Point;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Toast;
 
 import com.hencoder.hencoderpracticedraw4.R;
 
 public class Practice02ClipPathView extends View {
-    Paint paint = new Paint();
+    Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     Bitmap bitmap;
     Point point1 = new Point(200, 200);
     Point point2 = new Point(600, 200);
@@ -39,11 +40,21 @@ public class Practice02ClipPathView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+//        Toast.makeText(getContext(),point1.x+"-----"+point1.y,Toast.LENGTH_SHORT).show();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeWidth(50);
+        paint.setColor(Color.RED);
+        canvas.drawPoint(point1.x,point1.y,paint);
+
+
         canvas.save();
         Path path1=new Path();
         path1.addCircle(point1.x+200,point1.y+200,150, Path.Direction.CW);
         canvas.clipPath(path1);
         canvas.drawBitmap(bitmap, point1.x, point1.y, paint);
+
+
         canvas.restore();
 
         canvas.save();
